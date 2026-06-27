@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@layer base {
+body {
+    font-family: "Playfair Display", serif;
+    
+    @apply bg-green-950 text-white tracking-wider;
+  }
+}
+
+
+@layer utilities {
+  .font-lobster {
+    font-family: "Lobster", cursive;
+  }
+}
+section{
+    @apply py-20 md:py-28;
+}
+
+h1{
+    @apply  text-3xl md:text-4xl xl:text-5xl font-bold;
+}
+
+.navlink{
+    @apply text-lg font-bold duration-300 ;
+}
+
+
+.popular_card:hover img{
+  @apply -top-8;
+}
+
+
+  /* Active bullet (selected dot) */
+  .swiper-pagination-bullet {
+    background: #16a34a !important;
+    opacity: 0.5;
+    width: 12px !important;   /* ← size بڑھائیں */
+    height: 12px !important;
+  }
+  .swiper-pagination-bullet-active {
+    background: #22c55e !important;
+    opacity: 1;
+    width: 30px !important;   /* ← active bullet لمبا */
+    height: 12px !important;
+    border-radius: 4px !important;
+  }

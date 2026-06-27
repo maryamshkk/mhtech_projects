@@ -1,0 +1,246 @@
+*{
+    margin: 0px;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-bottom: 5px solid #705438;
+    background: #FFCC99;
+}
+
+.flogo{
+    height: 40px;
+    width: 30px;
+    
+}
+
+.logo{
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-links{
+    list-style: none;
+    display: flex;
+    gap: 70px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+}
+
+.icons{
+    display: flex;
+    gap: 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.hero{
+    position: relative;
+    height: 100vh;
+}
+.heroimg{
+    background-image: url(images/heroimg.jpg);
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.insidebox{
+    height: auto;
+    width: auto;
+    background-color: #F7D9BA;
+    position: absolute;
+    top:40%;
+    right: 8%;
+    width: 30%;
+    height: 40%;
+    padding:40px;
+    padding-bottom: 200px;
+}
+.insidebox h1{
+    color: #6F4E2E;
+    
+}
+.buynow{
+    height: 30px;
+    width: 30%;
+    background-color: #705438;
+    color: aliceblue;
+    cursor: pointer;
+}
+.buynow:hover{
+    border-radius: 10px;
+    background-color: #F5D4B3;
+    color: #000;
+    cursor: pointer;
+}
+
+.trendingsection{
+    margin: 50px;
+    background-color: #F9CEA3;
+    color: black;
+    padding-bottom: 50px;
+}
+
+.ts1{
+    text-align: center;
+    padding: 20px;
+}
+.tsh1{
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.timages{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.ti1{
+    height: 300px;
+    width: 230px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px 2px black;
+}
+
+.ti2{
+    height: 300px;
+    width: 230px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px 2px black;
+}
+
+.ti3{
+    height: 300px;
+    width: 230px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px 2px black;
+} 
+
+.timages p{
+    text-align: center;
+    padding: 10px;
+    font-weight: 800;    
+}
+
+.products{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.products h4{
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+
+.listsection1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.listsection2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding-top: 40px;
+}
+
+.psection1{
+    height: 370px;
+    width: 220px;
+    background-color: #705438;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 2px #898684;
+}
+
+.psection2{
+    height: 370px;
+    width: 220px;
+    background-color: #705438;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 2px #898684;
+}
+
+.psection3{
+    height: 370px;
+    width: 220px;
+    background-color: #705438;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 2px #898684;
+}
+
+.psection4{
+    height: 370px;
+    width: 220px;
+    background-color: #705438;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 2px #898684;
+}
+
+.psection5{
+    height: 370px;
+    width: 220px;
+    background-color: #705438;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 2px #898684;
+}
+
+.pi1 img{
+    height: 260px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px beige;
+
+}
+
+.text{
+    padding-top: 10px;
+    padding-left: 10px;
+    color: wheat;
+}
+.text p{
+    padding-top: 10px;
+}
+
+.text h6{
+    font-size: large;
+    padding-top: 10px;
+}
