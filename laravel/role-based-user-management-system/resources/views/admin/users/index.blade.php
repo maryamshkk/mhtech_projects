@@ -17,7 +17,7 @@
             Manage Users
         </h1>
 
-        <a href="/admin/dashboard"
+        <a href="{{ route('admin.dashboard') }}"
             class="bg-white text-blue-600 px-5 py-2 rounded-lg font-semibold hover:bg-gray-100">
             Dashboard
         </a>
@@ -41,7 +41,7 @@
             All Users
         </h2>
 
-        <a href="/admin/users/create"
+        <a href="{{ route('admin.users.create') }}"
             class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition">
             + Add User
         </a>
@@ -61,7 +61,7 @@
                     <th class="px-6 py-4">Name</th>
                     <th class="px-6 py-4">Email</th>
                     <th class="px-6 py-4 text-center">Role</th>
-
+                    <th class="px-6 py-4">Action</th> 
                 </tr>
 
             </thead>
@@ -69,7 +69,7 @@
             <tbody>
 
                 @forelse($users as $user)
-
+                
                     <tr class="border-b hover:bg-gray-50">
 
                         <td class="px-6 py-4 text-center">
@@ -85,22 +85,42 @@
                         </td>
 
                         <td class="px-6 py-4 text-center">
-
-                        @if($user->role == 'admin')
-
-                            <span class="inline-flex items-center justify-center bg-red-100 text-red-700 px-4 py-1 rounded-full text-sm font-semibold">
-                                Admin
-                            </span>
-
-                        @else
-
                             <span class="inline-flex items-center justify-center bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-semibold">
                                 Customer
                             </span>
-
-                        @endif
-
                     </td>
+
+
+                    <td class="space-x-2">
+                        <a href="{{ route('admin.users.edit', $user->id) }}"
+
+                        class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded">
+
+                        Edit
+
+                        </a>
+                    
+
+                        <form
+                        action="{{ route('admin.users.destroy', $user->id) }}"
+                        method="POST"
+                        class="inline">
+
+                        @csrf
+                        @method('DELETE')
+
+                        <button
+                            onclick="return confirm('Are you sure you want to delete this user?')"
+                            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+
+                            Delete
+
+                            </button>
+
+                        </form>
+                    
+                        </td>
+
 
                     </tr>
 

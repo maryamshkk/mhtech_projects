@@ -16,27 +16,63 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showlogin']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
+
 // ADMIN dashboard
-Route::get('/admin/dashboard', [AuthController::class, 'adminDashboard'])->middleware(['auth', 'role:admin']);
-// view user in admin
-Route::get('/admin/users', [UserController::class, 'index'])->middleware(['auth', 'role:admin']);
-// create and store user in admin panel
-Route::get('/admin/users/create', [UserController::class, 'create'])->middleware(['auth', 'role:admin']);
-Route::post('/admin/users', [UserController::class, 'store'])->middleware(['auth', 'role:admin']);
+Route::middleware(['auth', 'role:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+
+        Route::get('/dashboard', [AuthController::class, 'adminDashboard'])
+            ->name('dashboard');
+
+        Route::get('/users', [UserController::class, 'index'])
+            ->name('users.index');
+
+        Route::get('/users/create', [UserController::class, 'create'])
+            ->name('users.create');
+
+        Route::post('/users', [UserController::class, 'store'])
+            ->name('users.store');
+
+        Route::get('/users/{user}/edit', [UserController::class, 'edit'])
+            ->name('users.edit');
+
+        Route::put('/users/{user}', [UserController::class, 'update'])
+            ->name('users.update');
+
+        Route::delete('/users/{user}', [UserController::class, 'destroy'])
+            ->name('users.destroy');
+    });
 
 
-// dashboard
+// Customer Dashboard
 Route::get('/dashboard', [AuthController::class, 'dashboard'])->middleware(['auth', 'role:customer']);
 
 // profile
-Route::get('/profile', [AuthController::class, 'profile'])->middleware('auth');
-Route::get('/profile/edit', [AuthController::class, 'editProfile'])->middleware('auth');
-Route::put('/profile/update', [AuthController::class, 'updateProfile'])->middleware('auth');
-Route::post('/profile', [AuthController::class, 'updateProfile']);
 
-// Change Password show 
-Route::get('/profile/change-password', [AuthController::class, 'showChangePassword'])->middleware('auth');
-// Change password
-Route::put('/profile/change-password', [AuthController::class, 'changePassword'])->middleware('auth');
+Route::middleware(['auth'])
+    ->prefix('profile')
+    ->name('profile.')
+    ->group(function() {
+    
+        Route::get('/', [AuthController::class, 'profile'])
+            ->name('index');
+        
+        Route::get('/edit', [AuthController::class, 'editProfile'])
+            ->name('edit');
+        
+        Route::put('/update', [AuthController::class, 'updateProfile'])
+            ->name('update');
+        
+        // Change Password show 
+        Route::get('/change-password', [AuthController::class, 'showChangePassword'])
+            ->name('change-password');
+
+        // Change password
+        Route::put('/change-password', [AuthController::class, 'changePassword'])
+            ->name('change-password');
+    });
+
 // logout
 Route::post('/logout', [AuthController::class, 'logout']);

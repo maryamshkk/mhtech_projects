@@ -84,7 +84,7 @@
             <!-- Buttons -->
             <div class="mt-8 flex gap-4">
 
-                <a href="/profile"
+                <a href="{{ route('profile.index') }}"
                     class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition">
                     My Profile
                 </a>

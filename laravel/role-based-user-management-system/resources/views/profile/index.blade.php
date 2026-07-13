@@ -17,7 +17,7 @@
                 My Profile
             </h1>
 
-            <a href="/dashboard"
+            <a href="{{ route('profile.index') }}"
                 class="bg-white text-blue-600 px-5 py-2 rounded-lg font-semibold hover:bg-gray-100">
                 Dashboard
             </a>
@@ -81,11 +81,11 @@
                     Back
                 </a>
 
-                <a href="/profile/edit"
+                <a href="{{ route('profile.edit') }}"
                     class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
                     Edit Profile
                 </a>
-                <a href="/profile/change-password"
+                <a href="{{ route('profile.change-password') }}"
                 class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg">
                     Change Password
                 </a>

@@ -35,7 +35,7 @@
 
     @endif
 
-    <form action="/admin/users" method="POST">
+    <form action="{{ route('admin.users.index') }}" method="POST">
 
         @csrf
 

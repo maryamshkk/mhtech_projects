@@ -29,7 +29,7 @@ class RoleMiddleware
                         return redirect('/admin/dashboard')
                         ->with('error', 'You cannot access that page');
                     }
-                return redirect('/dashboard')->with('error', 'ypu cannot access this page');
+                return redirect('/dashboard')->with('error', 'You cannot access this page');
                 
             }
         return $next($request);
