@@ -1,29 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 min-h-screen">
-
-    <!-- Navbar -->
-    <nav class="bg-blue-600 shadow">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-
-            <h1 class="text-2xl font-bold text-white">
-                My Profile
-            </h1>
-
-            <a href="{{ route('profile.index') }}"
-                class="bg-white text-blue-600 px-5 py-2 rounded-lg font-semibold hover:bg-gray-100">
-                Dashboard
-            </a>
-
-        </div>
-    </nav>
+@extends('layouts.app')
+@section('title', 'My Profile')
+@section('page-title','My Profile')
+@section('content')
 
     <div class="max-w-3xl mx-auto mt-10">
 
@@ -95,6 +73,4 @@
         </div>
 
     </div>
-
-</body>
-</html>
+@endsection

@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create User</title>
+@extends('layouts.admin')
+@section('title', 'Create User')
+@section('page-title', 'Create User')
+@section('content')
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
-</head>
 <body class="bg-gray-100">
 
 <div class="max-w-xl mx-auto mt-12 bg-white shadow rounded-xl p-8">
@@ -35,7 +31,7 @@
 
     @endif
 
-    <form action="{{ route('admin.users.index') }}" method="POST">
+    <form action="{{ route('admin.users.store') }}" method="POST">
 
         @csrf
 
@@ -106,6 +102,4 @@
     </form>
 
     </div>
-
-</body>
-</html>
+@endsection

@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit User</title>
+@extends('layouts.admin')
+@section('title', 'Edit User')
+@section('page-title', 'Edit User')
+@section('content')
 
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100">
-
-<div class="max-w-xl mx-auto mt-10 bg-white shadow rounded-xl p-8">
+<div class="max-w-xl mx-auto bg-white shadow rounded-xl p-8">
 
     <h1 class="text-3xl font-bold mb-8">
-
         Edit User
-
     </h1>
-
+    
     @if($errors->any())
 
     <div class="bg-red-100 text-red-700 p-4 rounded mb-5">
@@ -113,6 +106,4 @@
 </form>
 
 </div>
-
-</body>
-</html>
+@endsection
