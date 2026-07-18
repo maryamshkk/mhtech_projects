@@ -9,9 +9,15 @@
 
             <!-- Avatar -->
             <div class="flex justify-center mb-6">
-                <div class="w-24 h-24 rounded-full bg-blue-600 flex items-center justify-center text-white text-4xl font-bold">
-                    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                </div>
+
+                @if(Auth::user()->image)
+                    <img src="{{ asset('storage/' . Auth::user()->image) }}"
+                    class="w-28 h-28 rounded-full object-cover border-4 border-blue-500 shadow-lg">
+                @else
+                    <div class="w-24 h-24 rounded-full bg-blue-600 flex items-center justify-center text-white text-4xl font-bold">
+                        {{ strtoupper(substr(Auth::user()->name,0,1)) }}
+                    </div>
+                @endif
             </div>
 
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
@@ -49,6 +55,32 @@
                         {{ Auth::user()->created_at->format('d M Y') }}
                     </div>
                 </div>
+                
+                <div>
+                    <label class="text-gray-500 font-semibold">
+                        Uploaded File
+                    </label>
+
+                    <div class="mt-2 p-4 bg-gray-100 rounded-lg">
+                        @if(Auth::user()->file)
+                        <a href="{{ asset('storage/' . Auth::user()->file) }}"
+                        target="_blank"
+                        class="text-blue-600 hover:underline font-semibold">
+
+                            View Uploaded File
+
+                        @else
+                        <span class="text-gray-500">
+                            No file uploaded.
+                        </span>
+
+                        @endif
+
+                    </div>
+                </div>
+
+
+            </a>
 
             </div>
 

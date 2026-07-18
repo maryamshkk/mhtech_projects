@@ -6,7 +6,7 @@
 <div class="max-w-5xl mx-auto mt-8 px-4">
     <div class="bg-white rounded-2xl shadow-lg p-8">
 
-    <form action="profile.update" method="POST">
+    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
 
         @csrf
         @method('PUT')
@@ -24,20 +24,32 @@
                 class="w-full border rounded-lg px-4 py-3">
 
         </div>
-
         <div class="mb-5">
 
             <label class="block font-semibold mb-2">
-                Email
+                Profile Image
             </label>
 
             <input
-                type="email"
-                name="email"
-                value="{{ old('email', Auth::user()->email) }}"
-                class="w-full border rounded-lg px-4 py-3">
+                type="file"
+                name="image"
+                class="w-full border rounded-lg p-3">
 
         </div>
+
+        <div class="mb-5">
+
+            <label class="block text-gray-700 font-semibold mb-2">
+                Upload File
+            </label>
+
+            <input
+                type="file"
+                name="file"
+                class="w-full border rounded-lg p-3">
+
+        </div>
+
 
         <div class="flex gap-4 mt-6">
 

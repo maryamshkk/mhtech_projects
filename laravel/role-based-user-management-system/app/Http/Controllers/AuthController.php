@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -60,29 +61,72 @@ class AuthController extends Controller
         return view('dashboard');
 
     }
+    // profile
     public function profile()
     {
         return view('profile.index');
 
     }
+    // edit
     public function editProfile()
     {
         return view('profile/edit');
     }
+    // update
     public function updateProfile(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|min:3|max:100',
+
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+
+            'file' => 'nullable|file|mimes:pdf,doc,docx,xlsx,xls|max:5120',
         ]);
+
         $user = Auth::user();
+        // image validation
+        if($request->hasFile('image')){
+            if($user->image && 
+                Storage::disk('public')->exists($user->image))
+            {
+                Storage::disk('public')->delete($user->image);
+            }
+     
+            $image = $request->file('image');
+            $extension = $image->extension();
+            // user_15.png
+            $fileName = 'user_' . $user->id . '.' . $extension;
+            // image store path
+            $path = $image->storeAs('profiles', $fileName, 'public');
+            // file dtore path
+            $user->image = $path;
+            
+        }
+        // file validation
+        if($request->hasFile('file'))
+            {
+                if($user->file &&
+                    Storage::disk('public')->exists($user->file))
+                    {
+                        Storage::disk('public')->delete($user->file);
+                    }
 
-        $user->update([
-            'name' => $validated['name'],
-        ]);
+                $file = $request->file('file');
+                $extension = $file->extension();
+                $fileName = 'file_' . $user->id . '.' . $extension;
+                $filePath = $file->storeAs('files', $fileName, 'public');
+                $user->file = $filePath;
+            }
 
-        return redirect('/profile');
+        
+        $user->name = $validated['name'];
+
+        $user->save();
+
+        return redirect('/profile')
+                ->with('success', "Profile updated successfully");
     }
-
+    // changepassw
     public function showChangePassword()
     {
         return view('profile.change-password');

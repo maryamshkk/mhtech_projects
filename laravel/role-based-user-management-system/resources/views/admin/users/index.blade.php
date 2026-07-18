@@ -18,7 +18,20 @@
         </a>
 
     </div>
+    <form action="{{ route('admin.users.index') }}" method="GET" class="mb-6 flex gap-3">
+        <input 
+        type="text" 
+        name="search" 
+        placeholder="Search by name...."
+        value="{{ request('search') }}"
+        class="border rounded-lg px-4 py-2 w-72">
+        <button
+            class="bg-blue-600 text-white px-5 rounded-lg hover:bg-blue-700">
 
+            Search
+
+        </button>
+    </form>
     <!-- Table -->
     <div class="bg-white shadow-lg rounded-xl overflow-hidden">
 
@@ -111,6 +124,10 @@
 
         </table>
 
+    </div>
+    
+    <div class="mt-6">
+        {{ $users->links() }}
     </div>
 
 </div>

@@ -6,15 +6,26 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 
 class UserController extends Controller
 {
     // show all users 
-    public function index()
+    public function index(Request $request)
     {
         // access all users
-        $users = User::where('role', 'customer')->get();
+        $query = User::where('role', 'customer')->latest();
+        
+        $query->when($request->filled('search'), function($query) use ($request){
+            $query->where(function ($query) use ($request){
+                $query->where('name', 'like', '%' . $request->search. '%')
+                    ->orWhere('email', 'like', '%' . $request->search. '%');
+            });    
+        });
+        
+        $users = $query->paginate(5)->withQueryString();
+
         return view('admin.users.index', compact('users'));
     }
     
@@ -82,9 +93,31 @@ class UserController extends Controller
             {
                 return back()->with('error', 'You cannot delete your own account');
             }
+        if ($user->image &&
+                Storage::disk('public')->exists($user->image))
+                {
+                    Storage::disk('public')->delete($user->image);
+                }
         
         $user->delete();
 
         return redirect('/admin/users')->with('success', 'User deleted successfully. ');
     }
 }
+
+// 🟡 Eloquent Advanced (25%)
+
+// Completed:
+
+// ✅ Basic Queries
+
+// Remaining:
+
+// ⏳ where()
+// ⏳ orWhere()
+// ⏳ latest()
+// ⏳ orderBy()
+// ⏳ firstOrFail()
+// ⏳ with()
+// ⏳ whereHas()
+// ⏳ Eager Loading
