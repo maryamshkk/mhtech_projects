@@ -14,4 +14,7 @@ Route::get('users/{id}', [UserController::class, 'show']);
 Route::post('/users', [UserController::class, 'store']);
 
 // update user
-Route::put('/users/{id}', [UserController::])
+Route::put('/users/{id}', [UserController::class, 'update']);
+
+// delete usr
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
