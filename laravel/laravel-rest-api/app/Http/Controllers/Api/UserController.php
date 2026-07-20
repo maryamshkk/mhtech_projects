@@ -36,5 +36,37 @@ class UserController extends Controller
             'message' => 'user created successfully',
             'user' => $user,
         ], 201);
+
     }
+    public function update(Request $request, $id)
+    {
+        $user = User::FindOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'required|min:3',
+            'password' => 'nullable|min:6',
+        ]);
+
+        $user->name = $validated['name'];
+
+            if($request->filled('password')){
+                $user->password = bcrypt($validated['password']);
+            }
+            
+        $user->save();
+        return response()->json([
+            "message" => "User updated successfully",
+            "user" => $user,
+        ]);
+    }
+        public function destroy(Request $request, $id)
+        {   
+            $user = user::FindOrFail($id);
+            $user->delete();
+
+            return response()->json([
+                "message" => "User deleted successfully"
+            ]);
+
+        }
 }
