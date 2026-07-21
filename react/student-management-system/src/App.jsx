@@ -1,13 +1,18 @@
 import { useState } from 'react'
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
+import Dashboard from './pages/Dashboard';
 
 
 function App() {
 
   return (
     <>
-      <h1>Student Management System</h1>
-      <p> Welcome to React.</p>
-      <button> Click Me </button>
+      <Navbar />
+      <Sidebar />
+      <Dashboard />
+      <Footer />
     </>
   );
 }
