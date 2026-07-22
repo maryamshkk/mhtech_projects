@@ -1,10 +1,10 @@
-function Navbar(props)
+function Navbar({title, username, year})
 {
     return(
         <nav>
-            <h2>{props.title}</h2>
-            <h2>{props.username}</h2>
-            <h2>{props.year}</h2>
+            <h2>{title}</h2>
+            <h2>{username}</h2>
+            <h2>{year}</h2>
         </nav>
     )
 
