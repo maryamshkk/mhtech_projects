@@ -1,11 +1,13 @@
-function Navbar({title, username, year})
+function Navbar({title})
 {
     return(
-        <nav>
-            <h2>{title}</h2>
-            <h2>{username}</h2>
-            <h2>{year}</h2>
-        </nav>
+         <header className="bg-blue-600 text-white px-8 py-4 shadow-md">
+
+            <h1 className="text-2xl font-bold">
+                {title}
+            </h1>
+
+        </header>
     )
 
 }
