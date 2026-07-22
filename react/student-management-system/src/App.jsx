@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar title="Student Management System" username="Maryam" year={2026}/>
       <Sidebar />
       <Dashboard />
       <Footer />
