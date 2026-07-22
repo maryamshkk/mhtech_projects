@@ -13,10 +13,8 @@ function App() {
       <Navbar title="Student Management System"/>
 
       <MainLayout>
-        <div className="flex">
         <Sidebar />
         <Dashboard />
-        </div>
       </MainLayout>
       
       <Footer />
