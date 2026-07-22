@@ -1,4 +1,6 @@
 import Button from "../components/Button";
+import Card from "../components/StudentCard";
+
 
 function Dashboard()
 {
@@ -10,6 +12,11 @@ function Dashboard()
             <Button text="Edit Student" type="button"/>
             <Button text="Delete Student" type="button"/>
             <Button text="Search Student" type="button"/>
+            <Card>
+                <h2>Maryam Sheikh</h2>
+                <p> BS Computer Science</p>
+                <p> Semester 7</p>
+            </Card>
         </main>
     )
 }
