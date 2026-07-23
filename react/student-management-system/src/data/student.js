@@ -3,7 +3,7 @@ export const dashboardStats = [
         id: 1,
         key: "students",
         title:"Total Students",
-        value:250
+        value:0
     },
 
     {
