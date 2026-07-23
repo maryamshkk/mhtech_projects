@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
 
-function StudentForm()
+function StudentForm({addStudent})
 {
     const [formData, setFormData] = useState({
         name: "",
@@ -12,16 +12,27 @@ function StudentForm()
 
     function handleChange(event){
         const {name, value} = event.target;
-
+        
         setFormData({
             ...formData,
             [name]: value
         });
+        }
+    function handleSubmit(event){
+            event.preventDefault();
+            addStudent(formData);
+            setFormData({
+                name:"",
+                department :"",
+                semester:""
+            });
+        
     }
 
     return (
-        <form className="bg-white rounded-xl shadow-md p-6">
-
+        <form className="bg-white rounded-xl shadow-md p-6"
+        onSubmit={handleSubmit}
+>
             <h2 className="text-2xl font-bold mb-6">
                 Add New Student
             </h2>
@@ -46,8 +57,8 @@ function StudentForm()
                     value={formData.semester}
                     onChange={handleChange}/>
 
-            <Button type="Add Student"
-                    type="Submit"/>
+            <Button text="Add Student"
+                    type="submit"/>
                     </div>
         </form>
     )

@@ -1,6 +1,6 @@
 function Input({
     type,
-    placeolder,
+    placeholder,
     name,
     value,
     onChange

@@ -2,6 +2,7 @@ import Button from "../components/Button";
 import { dashboardStats } from "../data/student";
 import StatCard from "../components/StatCard";
 import StudentCard from "../components/StudentCard";
+import StudentForm from "../components/StudentForm";
 import { useState } from "react";
 
 function Dashboard()
@@ -34,11 +35,10 @@ function Dashboard()
         }
     ])
 
-    function addStudent(){
+    function addStudent(studentData){
         const newStudent = {
             id: students.length + 1,
-            name: "Hamza",
-            department : "BSIT"
+            ...studentData
         }
         setStudents([
             ...students,
@@ -74,10 +74,7 @@ function Dashboard()
             <p className="text-gray-500 mt-2">
                 Welcome to Student Managemnt System
             </p>
-            <Button text="Add Student"
-                    type="button" 
-                    onClick={addStudent}
-            />
+            
             <br></br>
             <br></br>
             <Button text="BgChange"
@@ -85,7 +82,7 @@ function Dashboard()
                     onClick={bgcolorchange}
             />
 
-            <div className="flex gap-4 mt-8">
+            <div className="grid grid-cols-2 gap-4">
             {
                 
 
@@ -121,6 +118,7 @@ function Dashboard()
             }
                 </div>
             </div>
+            <StudentForm addStudent={addStudent}/>
 
         </main>
     )
