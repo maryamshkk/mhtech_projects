@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "../components/Button";
+import Input from "../components/Input";
 
 function StudentForm()
 {
@@ -9,6 +10,15 @@ function StudentForm()
         semester: "", 
     });
 
+    function handleChange(event){
+        const {name, value} = event.target;
+
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    }
+
     return (
         <form className="bg-white rounded-xl shadow-md p-6">
 
@@ -17,14 +27,24 @@ function StudentForm()
             </h2>
 
             <div className="space-y-4"> 
-            <input type="text"
-                    placefolder="Student Name"/>
+            <Input type="text"
+                    placeholder="Student Name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    />
             
-            <input type="text"
-                    placeholder="Department"/>
+            <Input type="text"
+                    placeholder="Department"
+                    name="department"
+                    value={formData.department}
+                    onChange={handleChange}/>
 
-            <input type="text"
-                    placeholder="Semester"/>
+            <Input type="text"
+                    placeholder="Semester"
+                    name="semester"
+                    value={formData.semester}
+                    onChange={handleChange}/>
 
             <Button type="Add Student"
                     type="Submit"/>
