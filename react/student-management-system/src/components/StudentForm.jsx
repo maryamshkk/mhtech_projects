@@ -30,14 +30,11 @@ function StudentForm({addStudent})
     }
 
     return (
-        <form className="bg-white rounded-xl shadow-md p-6"
+        <form className="bg-white rounded-xl space-y-5 shadow-md p-6 "
         onSubmit={handleSubmit}
 >
-            <h2 className="text-2xl font-bold mb-6">
-                Add New Student
-            </h2>
 
-            <div className="space-y-4"> 
+             
             <Input type="text"
                     placeholder="Student Name"
                     name="name"
@@ -59,7 +56,7 @@ function StudentForm({addStudent})
 
             <Button text="Add Student"
                     type="submit"/>
-                    </div>
+                
         </form>
     )
 

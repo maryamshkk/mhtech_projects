@@ -8,7 +8,7 @@ import { useState } from "react";
 function Dashboard()
 {
     const [totalStudents, setTotalStudents] = useState(250);
-    const [color, changeColor] = useState('#ebf0fa')
+    const [color, changeColor] = useState('#eef4ff')
     const [students, setStudents] = useState([
         {
             id: 1,
@@ -57,36 +57,54 @@ function Dashboard()
         //     changeColor('#6597fc')
         // }
             changeColor(
-                color === '#ebf0fa' 
-                ? '#6597fc'
-                : '#ebf0fa')
+                color === '#eef4ff' 
+                ? '#dbeafe'
+                : '#eef4ff')
 
         }
 
 
     return(
-        <main style={{backgroundColor : color}}
-        className="flex-1 p-8">
-            <h2 className="text-3xl font-bold mb-4">
+        <main
+        style={{ backgroundColor: color }}
+        className=" p-8 transition-all duration-500">
+        {/* Header */}
+
+        <div className="bg-gradient-to-r from-indigo-700 via-blue-600 to-cyan-500 rounded-3xl text-white p-10 shadow-2xl mb-10">
+
+            <h1 className="text-4xl font-bold">
                 Dashboard
-            </h2>            
-            
-            <p className="text-gray-500 mt-2">
-                Welcome to Student Managemnt System
+            </h1>
+
+            <p className="mt-4 text-blue-100 text-lg">
+                Manage students, monitor statistics and add new records easily.
             </p>
-            
-            <br></br>
-            <br></br>
-            <Button text="BgChange"
+
+            {/* bg color change */}
+            <div className="mt-6">
+                <Button
+                    text="Change Background"
                     type="button"
                     onClick={bgcolorchange}
-            />
+                />
+            </div>  
+        </div>
+        <div className="mb-6">
 
-            <div className="grid grid-cols-2 gap-4">
+            <h2 className="text-3xl font-bold text-slate-800">
+                Dashboard Overview
+            </h2>
+
+            <p className="text-slate-500">
+                Quick insights about your system.
+            </p>
+
+        </div>
+        
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
             {
-                
-
                 dashboardStats.map((item) =>(
+                    
                     <StatCard
                         key={item.id}
                         title={item.title}
@@ -100,13 +118,18 @@ function Dashboard()
                 
             </div>
 
-            <div className="mt-10">
+        <div className="bg-white rounded-3xl shadow-2xl border border-blue-100 p-8">
 
-            <h2 className="text-2xl font-bold mb-6">
+            <h2 className="text-3xl font-bold text-slate-800">
                 Recent Students
             </h2>
-                <div>
-                    {
+
+            <p className="text-slate-500 mb-8">
+                Newly added students in the system.
+            </p>
+        
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {
                 students.map((student) =>(
                     <StudentCard
                         key = {student.id}
@@ -116,11 +139,28 @@ function Dashboard()
                 
                 ))
             }
-                </div>
             </div>
-            <StudentForm addStudent={addStudent}/>
+        </div>
 
-        </main>
+        <div className="bg-white rounded-3xl mt-12 shadow-2xl border border-blue-100 p-8">
+
+    <div className="mb-8">
+
+        <h2 className="text-3xl font-bold text-slate-800">
+            Add New Student
+        </h2>
+
+        <p className="text-slate-500">
+            Fill out the details below to register a student.
+        </p>
+
+    </div>
+
+    <StudentForm addStudent={addStudent} />
+
+</div>
+        
+    </main>
     )
 }
 
