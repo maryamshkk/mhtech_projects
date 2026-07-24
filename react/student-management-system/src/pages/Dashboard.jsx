@@ -14,26 +14,31 @@ function Dashboard()
             id: 1,
             name: "Maryam",
             department: "BSCS",
+            semester: 4
         },
 
         {
             id: 2,
             name: "Ahmed",
-            department: "BSCS"
+            department: "BSCS",
+            semester: 6
         },
 
         {
             id: 3,
             name: "Alishba",
-            department: "BSCS"
+            department: "BSCS",
+            semester: 7
         }, 
 
         {
             id: 4,
             name: "Sadia",
-            department: "BSCS"
+            department: "BSCS",
+             semester: 8
         }
     ])
+
 
     function addStudent(studentData){
         const newStudent = {
@@ -45,6 +50,38 @@ function Dashboard()
             newStudent
         ]);
         setTotalStudents(totalStudents+1);
+    }
+
+    const [editingStudent, setEditingStudent] = useState(null);
+
+    function editStudent(student)
+    {
+        setEditingStudent(student);
+
+    }
+
+    function updateStudent(updatedStudent){
+        const updatedStudents = students.map((student)=>{
+            if(student.id===updatedStudent.id)
+            {
+                return updatedStudent;
+            }
+            return student;
+        });
+
+        setStudents(updatedStudents);
+        setEditingStudent(null);
+        }
+    }
+
+    function deleteStudent(id)
+    {
+        const updatedStudents =  students.filter(
+        (student) => student.id !== id
+        );
+
+        setStudents(updatedStudents);
+
     }
 
     function bgcolorchange()
@@ -118,29 +155,39 @@ function Dashboard()
                 
             </div>
 
-        <div className="bg-white rounded-3xl shadow-2xl border border-blue-100 p-8">
+        <div className="mt-10 bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
 
-            <h2 className="text-3xl font-bold text-slate-800">
+    <div className="flex items-center justify-between mb-8">
+        <div>
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-800">
                 Recent Students
             </h2>
 
-            <p className="text-slate-500 mb-8">
+            <p className="text-slate-500 mt-2">
                 Newly added students in the system.
             </p>
-        
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {
-                students.map((student) =>(
-                    <StudentCard
-                        key = {student.id}
-                        name = {student.name}
-                        department = {student.department}
-                    />
-                
-                ))
-            }
-            </div>
         </div>
+
+        <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-semibold text-sm">
+            {students.length} Students
+        </span>
+    </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            {students.map((student) => (
+                <StudentCard
+                    key={student.id}
+                    id={student.id}
+                    name={student.name}
+                    department={student.department}
+                    semester={student.semester}
+                    onEdit={editStudent}
+                    onDelete={deleteStudent}
+                />
+            ))}
+        </div>
+
+    </div>
 
         <div className="bg-white rounded-3xl mt-12 shadow-2xl border border-blue-100 p-8">
 
@@ -156,12 +203,14 @@ function Dashboard()
 
     </div>
 
-    <StudentForm addStudent={addStudent} />
+    <StudentForm addStudent={addStudent} 
+                 editingStudent={editingStudent}/>
 
 </div>
         
     </main>
     )
-}
+
+
 
 export default Dashboard;

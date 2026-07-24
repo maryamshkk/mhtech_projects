@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
 
-function StudentForm({addStudent})
+function StudentForm({addStudent, editingStudent})
 {
     const [formData, setFormData] = useState({
         name: "",
@@ -29,6 +29,12 @@ function StudentForm({addStudent})
         
     }
 
+    useEffect(()=>{
+        if(editingStudent){
+            setFormData(editingStudent);
+        }
+    }, [editingStudent]);
+
     return (
         <form className="bg-white rounded-xl space-y-5 shadow-md p-6 "
         onSubmit={handleSubmit}
@@ -54,7 +60,12 @@ function StudentForm({addStudent})
                     value={formData.semester}
                     onChange={handleChange}/>
 
-            <Button text="Add Student"
+            <Button text={editingStudent 
+            ?
+             "Update Student" 
+            : 
+             "Add Student"
+            }
                     type="submit"/>
                 
         </form>
