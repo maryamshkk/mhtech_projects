@@ -3,7 +3,7 @@ import { dashboardStats } from "../data/student";
 import StatCard from "../components/StatCard";
 import StudentCard from "../components/StudentCard";
 import StudentForm from "../components/StudentForm";
-import { useState } from "react";
+import { useState} from "react";
 
 function Dashboard()
 {
@@ -14,28 +14,28 @@ function Dashboard()
             id: 1,
             name: "Maryam",
             department: "BSCS",
-            semester: 4
+            semester: "4"
         },
 
         {
             id: 2,
             name: "Ahmed",
             department: "BSCS",
-            semester: 6
+            semester: "6"
         },
 
         {
             id: 3,
             name: "Alishba",
             department: "BSCS",
-            semester: 7
+            semester: "7"
         }, 
 
         {
             id: 4,
             name: "Sadia",
             department: "BSCS",
-             semester: 8
+             semester: "8"
         }
     ])
 
@@ -71,8 +71,8 @@ function Dashboard()
 
         setStudents(updatedStudents);
         setEditingStudent(null);
-        }
     }
+    
 
     function deleteStudent(id)
     {
@@ -80,7 +80,10 @@ function Dashboard()
         (student) => student.id !== id
         );
 
+
         setStudents(updatedStudents);
+        setTotalStudents(totalStudents-1);
+        
 
     }
 
@@ -99,7 +102,7 @@ function Dashboard()
                 : '#eef4ff')
 
         }
-
+    
 
     return(
         <main
@@ -204,13 +207,14 @@ function Dashboard()
     </div>
 
     <StudentForm addStudent={addStudent} 
-                 editingStudent={editingStudent}/>
+                 editingStudent={editingStudent}
+                 updateStudent={updateStudent}/>
 
 </div>
         
     </main>
     )
 
-
+}
 
 export default Dashboard;
