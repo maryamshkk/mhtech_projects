@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import StudentForm from './components/StudentForm'
-
+import Dashboard from './pages/Dashboard'
 function App() {
 
 
 
   return (
     <>
-      <StudentForm />
+    <Dashboard />
     </>
   )
 }
 
-export default App
+export default App;

@@ -1,8 +1,9 @@
 import { useState } from "react";
 
 
-function StudentForm()
+function StudentForm({ addStudent })
 {
+    //  its the form state which makes form objects
     const [formData, setFormData] = useState({
         name:"",
         department:"",
@@ -34,6 +35,7 @@ function StudentForm()
     {
         event.preventDefault();
         console.log("Student Added");
+        addStudent(formData);
     }
 
     return(
