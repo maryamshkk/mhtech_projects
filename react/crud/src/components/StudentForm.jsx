@@ -8,10 +8,25 @@ function StudentForm()
         department:"",
         semester:"",
     })
+        // destructring
+    const {name, value} = event.target;
+
 
     function handleChange(event)
     {
-        console.log(event.target.value);
+        // console.log(event.target.value);
+        setFormData({
+            name: "",
+            department: "",
+            semester : "",
+
+            ...formData,
+            [name] : value
+        })
+
+            
+        // console.log(event.target.name);
+        // console.log(event.target.value);
 
     }
 
@@ -23,17 +38,20 @@ function StudentForm()
                 
                 <input  type="text"
                         name="name"
-                        placeholder="Enter name" 
+                        placeholder="Enter name"
+                        value={formData.name} 
                         onChange={handleChange}/>
                         <br></br>
                 <input type="text"
                         name="department"
                         placeholder="Enter department"
+                        value={formData.department}
                         onChange={handleChange}/>
                         <br></br>
                 <input type="text"
                         name="semester"
                         placeholder="Enter semester"
+                        value={formData.semester}
                         onChange={handleChange}/>
                 
 
