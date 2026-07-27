@@ -30,11 +30,17 @@ function StudentForm()
 
     }
 
+    function handleSubmit(event)
+    {
+        event.preventDefault();
+        console.log("Student Added");
+    }
+
     return(
         <div>
             <h2>Add Student</h2>
 
-            <form>
+            <form onSubmit={handleSubmit}>
                 
                 <input  type="text"
                         name="name"
@@ -54,7 +60,9 @@ function StudentForm()
                         value={formData.semester}
                         onChange={handleChange}/>
                 
-
+                    <button>
+                        Add Student
+                    </button>
                         
             </form>
         </div>
