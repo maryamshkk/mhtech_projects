@@ -28,6 +28,18 @@ function Dashboard()
             student
         ]);
     }
+
+    // edit student ki alg state bane gi abhi tkk sirf dashboard
+    // mein data receive ho raha tha lekin form fill nhi ho raha tha 
+    // ab form fill kerne k loiye batane hoga form ko k student ka data rha hai 
+    // uss k liye alg state bne gi 
+    
+    const [ editingStudent, setEditingStudent] = useState([null]);
+    function editStudent()
+    {
+        console.log(student);
+        setEditingStudent(student);
+    }
     
 
     function deleteStudent(id)
@@ -44,6 +56,7 @@ function Dashboard()
         <div>
           <StudentForm 
             addStudent={addStudent}
+            editingStudent = {editingStudent}
           />
           {
             students.map((student)=> 
@@ -54,6 +67,7 @@ function Dashboard()
                     // semester={student.semester}
 
                     student={student}
+                    editStudent = {editStudent}
                     deleteStudent = {deleteStudent}
                     />
             

@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
-function StudentForm({ addStudent })
+function StudentForm({ addStudent, editingStudent })
 {
     //  its the form state which makes form objects
     const [formData, setFormData] = useState({
@@ -9,6 +9,11 @@ function StudentForm({ addStudent })
         department:"",
         semester:"",
     })
+    //  iss code ko ztoorat k wqt chalana
+    
+    useEffect(() =>{
+        console.log("editing student changed");
+    }, [editingStudent])
         // destructring
     const {name, value} = event.target;
 

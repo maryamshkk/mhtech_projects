@@ -1,7 +1,8 @@
 import Dashboard from "../pages/Dashboard";
+import Button from 'react-bootstrap/Button';
 
 
-function StudentCard({ student, deleteStudent, onClick }) {
+function StudentCard({ student, editStudent, deleteStudent }) {
 
     return (
         <div>
@@ -14,6 +15,8 @@ function StudentCard({ student, deleteStudent, onClick }) {
 
             <button onClick={() => deleteStudent(student.id)}>
                 Delete</button>
+                
+            <button onClick={() => editStudent(student)}>Edit</button>
         </div>
     );
 }
