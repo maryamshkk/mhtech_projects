@@ -8,6 +8,11 @@ function Count()
         console.log("Component Rendered");
     })
 
+    // [] dependency array
+    useEffect(() => {
+        console.log("Hello");
+    }, [count])
+    
     
     return(
         <div>
