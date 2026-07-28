@@ -84,7 +84,6 @@ function Dashboard()
         setStudents(updatedStudents);
         setTotalStudents(totalStudents-1);
         
-
     }
 
     function bgcolorchange()
