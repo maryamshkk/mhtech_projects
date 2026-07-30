@@ -6,6 +6,8 @@ import { useState, useEffect } from 'react';
 function App() {
   // api se jo users ayein ge woh iss mei store hon ge 
     const [users, setUsers] = useState([]);
+    
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
       // console.log("API call");
@@ -15,9 +17,11 @@ function App() {
         .then((data)=>{
         // console.log(data);
           setUsers(data);
+          setLoading(false);
       })
         // console.log(response);
     }, [])
+
   return (
     <>
     <Dashboard />
