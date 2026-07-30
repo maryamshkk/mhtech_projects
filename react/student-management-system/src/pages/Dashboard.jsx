@@ -88,15 +88,28 @@ function Dashboard()
     
     const[users, setUsers] = useState([]);
     // api fetching 
+    // useEffect(()=>{
+    //     fetch("https://jsonplaceholder.typicode.com/users")
+    //     .then((response)=>response.json())
+    //     .then((data)=>{
+    //         setUsers(data);
+    //     })
+
+    // }, [])
+    
+    // async/await
     useEffect(()=>{
-        fetch("https://jsonplaceholder.typicode.com/users")
-        .then((response)=>response.json())
-        .then((data)=>{
+            
+        async function fetchUsers(){
+            const response = await fetch(
+                "https://jsonplaceholder.typicode.com/users"
+               );
+            const data = await response.json();
+
             setUsers(data);
-        })
-
-    }, [])
-
+        }
+        fetchUsers();
+        }, []);
 
     function bgcolorchange()
     {
@@ -201,7 +214,9 @@ function Dashboard()
                 />
             ))}
             <br></br>
-            <br></br>
+            
+        </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
             {
                 users.map((user)=>{
                     return(                    
@@ -213,8 +228,7 @@ function Dashboard()
                     )
                 })
             }
-        </div>
-
+            </div>
     </div>
 
         <div className="bg-white rounded-3xl mt-12 shadow-2xl border border-blue-100 p-8">
