@@ -98,18 +98,31 @@ function Dashboard()
     // }, [])
     
     // async/await
+
+    const [error, setError] = useState("");
     useEffect(()=>{
             
         async function fetchUsers(){
+            try{
+
             const response = await fetch(
                 "https://jsonplaceholder.typicode.com/users"
                );
             const data = await response.json();
 
             setUsers(data);
+            }
+
+            catch(error){
+                setError("Failed to fetch users");
+            }
         }
         fetchUsers();
         }, []);
+
+        if(error){
+            return <h1>{error}</h1>
+        }
 
     function bgcolorchange()
     {
@@ -219,7 +232,8 @@ function Dashboard()
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
             {
                 users.map((user)=>{
-                    return(                    
+                    return(         
+                                   
                     <div>
                         <h2>{user.name}</h2>
                         <p>{user.email}</p>
