@@ -98,7 +98,7 @@ function Dashboard()
     // }, [])
     
     // async/await
-
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     useEffect(()=>{
             
@@ -116,9 +116,16 @@ function Dashboard()
             catch(error){
                 setError("Failed to fetch users");
             }
+            finally{
+                setLoading(false);
+            }
         }
         fetchUsers();
         }, []);
+
+        if(loading){
+            return <h1>Loading...</h1>
+        }
 
         if(error){
             return <h1>{error}</h1>
