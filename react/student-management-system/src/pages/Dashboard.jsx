@@ -3,7 +3,7 @@ import { dashboardStats } from "../data/student";
 import StatCard from "../components/StatCard";
 import StudentCard from "../components/StudentCard";
 import StudentForm from "../components/StudentForm";
-import { useState} from "react";
+import { useEffect, useState} from "react";
 
 function Dashboard()
 {
@@ -85,6 +85,18 @@ function Dashboard()
         setTotalStudents(totalStudents-1);
         
     }
+    
+    const[users, setUsers] = useState([]);
+    // api fetching 
+    useEffect(()=>{
+        fetch("https://jsonplaceholder.typicode.com/users")
+        .then((response)=>response.json())
+        .then((data)=>{
+            setUsers(data);
+        })
+
+    }, [])
+
 
     function bgcolorchange()
     {
@@ -154,6 +166,7 @@ function Dashboard()
                 ))
             }
             
+            
                 
             </div>
 
@@ -187,6 +200,19 @@ function Dashboard()
                     onDelete={deleteStudent}
                 />
             ))}
+            <br></br>
+            <br></br>
+            {
+                users.map((user)=>{
+                    return(                    
+                    <div>
+                        <h2>{user.name}</h2>
+                        <p>{user.email}</p>
+                        <p>{user.phone}</p>
+                    </div>
+                    )
+                })
+            }
         </div>
 
     </div>

@@ -24,6 +24,8 @@ function StudentForm({addStudent, editingStudent, updateStudent})
                 semester: "",
             })
         }
+
+
     }, [editingStudent]);
 
 
