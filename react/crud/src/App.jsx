@@ -8,22 +8,50 @@ function App() {
     const [users, setUsers] = useState([]);
     // loading state
     const [loading, setLoading] = useState(true);
+    // error handling state
+    const[error, setError] = useState("");
+
+
+    // useEffect(() => {
+    //   // console.log("API call");
+      
+    //   fetch("https://jsonplaceholder.typicode.com/users")
+    //     .then((response) => response.json())
+    //     .then((data)=>{
+    //     // console.log(data);
+          
+    //       setLoading(false);
+    //       setUsers(data);
+    //   })
+    //     // console.log(response);
+    // }, [])
+
     
     useEffect(() => {
-      // console.log("API call");
-
-      fetch("https://jsonplaceholder.typicode.com/users")
-        .then((response) => response.json())
-        .then((data)=>{
-        // console.log(data);
+      
+      async function fetchUsers(){
+          try{
+          const response = await fetch(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+        
+          const data = await response.json();
           
-          setLoading(false);
           setUsers(data);
-      })
-        // console.log(response);
-    }, [])
+      }
+      catch(error){
+          setError("failed to load users");
+      }
+
+          setLoading(false);
+    }
+    })
+
       if(loading){
         return <h1>loading...</h1>
+      }
+      if(error){
+        return <h1>{error}</h1>
       }
   return (
     <>
@@ -32,17 +60,16 @@ function App() {
 
     <div>
       
-      {console.log(users)}
+      {/* {console.log(users)} */}
       {
         users.map((user)=>{
-          return(
 
             <div key={user.id}>
             <h2>{user.name}</h2>
             <p>{user.email}</p>
             <p>{user.phone}</p>
             </div>
-          )
+          
         })
       }
     </div>
