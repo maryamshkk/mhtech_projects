@@ -34,6 +34,10 @@ function App() {
           const response = await fetch(
           "https://jsonplaceholder.typicode.com/users"
         );
+        // handling 404 error
+        if(!response.ok){
+          throw new Error("Failed to fetch users");
+        }
         
           const data = await response.json();
           
@@ -42,8 +46,9 @@ function App() {
       catch(error){
           setError("failed to load users");
       }
-
+      finally{
           setLoading(false);
+      }
     }
     fetchUsers();
     }, [])
