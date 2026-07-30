@@ -13,7 +13,27 @@ function Count()
         console.log("Hello");
     }, [count])
     
+    useEffect(() =>{
+        const timer =  setInterval(() =>{
+            console.log("Helllooo");
+        }, 1000);
+
+        return () => {
+            clearInterval(timer);
+        }
+    })
     
+
+    useEffect(() =>{
+        function handleResize(){
+            console.log(window.innerWidth);
+        }
+
+        window.addEventListener("resize", handleResize);
+        return ()=>{
+            window.removeEventListener("resize", handleResize);
+        }
+    }, [])
     return(
         <div>
             <h1>{count}</h1>
