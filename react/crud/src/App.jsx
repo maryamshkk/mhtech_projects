@@ -45,7 +45,8 @@ function App() {
 
           setLoading(false);
     }
-    })
+    fetchUsers();
+    }, [])
 
       if(loading){
         return <h1>loading...</h1>
@@ -63,13 +64,13 @@ function App() {
       {/* {console.log(users)} */}
       {
         users.map((user)=>{
-
+          return(
             <div key={user.id}>
             <h2>{user.name}</h2>
             <p>{user.email}</p>
             <p>{user.phone}</p>
             </div>
-          
+          )
         })
       }
     </div>
