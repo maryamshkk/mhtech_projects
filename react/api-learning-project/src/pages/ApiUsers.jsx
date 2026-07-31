@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import UserCard from "../components/UserCard";
 
 function ApiUsers()
 {
     const [users, setUsers] = useState([]);
 
     useEffect(()=>{
-        console.log("Compound Mounted");
+        // console.log("Compound Mounted");
 
         async function fetchUsers()
         {
@@ -14,7 +15,7 @@ function ApiUsers()
             );
             const data = await response.json();
             setUsers(data);
-            console.log(data);
+            // console.log(data);
         }
         fetchUsers();
     }, [])
@@ -24,15 +25,19 @@ function ApiUsers()
             <h1>
                 API Learning
             </h1>
-
-            {/* {
-                users.map(()=>{
-                    <div>
-                    <h1>{users.name}</h1>
-                    <p>{users.}</p>
-                    </div>
+            {
+                users.map((user)=>{
+                    return(
+                    <UserCard 
+                    key={user.id}
+                    user={user}
+                    
+                    />
+                    )
                 })
-            } */}
+            
+            
+            }
         </>
     )
 }
