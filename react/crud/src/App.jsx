@@ -27,38 +27,38 @@ function App() {
     // }, [])
 
     
-    useEffect(() => {
+    // useEffect(() => {
       
-      async function fetchUsers(){
-          try{
-          const response = await fetch(
-          "https://jsonplaceholder.typicode.com/users"
-        );
-        // handling 404 error
-        if(!response.ok){
-          throw new Error("Failed to fetch users");
-        }
-        
-          const data = await response.json();
-          
-          setUsers(data);
-      }
-      catch(error){
-          setError("failed to load users");
-      }
-      finally{
-          setLoading(false);
-      }
-    }
-    fetchUsers();
-    }, [])
+    //   async function fetchUsers(){
+    //       try{
+    //       const response = await fetch(
+    //       "https://jsonplaceholder.typicode.com/users",
+    //     );
+    //     // handling 404 error
+    //     if(!response.ok){
+    //       throw new Error("Failed to fetch users");
+    //     }
 
-      if(loading){
-        return <h1>loading...</h1>
-      }
-      if(error){
-        return <h1>{error}</h1>
-      }
+    //       const data = await response.json();
+          
+    //       setUsers(data);
+    //   }
+    //   catch(error){
+    //       setError("failed to load users");
+    //   }
+    //   finally{
+    //       setLoading(false);
+    //   }
+    // }
+    // fetchUsers();
+    // }, [])
+
+    //   if(loading){
+    //     return <h1>loading...</h1>
+    //   }
+    //   if(error){
+    //     return <h1>{error}</h1>
+    //   }
   return (
     <>
     <Dashboard />

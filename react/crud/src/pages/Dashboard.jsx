@@ -1,6 +1,8 @@
 import { useState } from "react";
 import StudentForm from "../components/StudentForm";
 import StudentCard from "../components/StudentCard";
+import {getStudents} from "../services/studentService";
+import { addStudent as addStudentAPI } from "../services/studentService";
 
 function Dashboard()
 {
@@ -21,8 +23,9 @@ function Dashboard()
         }
     ])
 
-    function addStudent(student)
+    async function addStudent(student)
     {
+        const newStudent = await addStudentAPI(student);
         setStudents([
             ...students,
             student
@@ -50,6 +53,17 @@ function Dashboard()
         setStudents(updatedStudents);
 
     }
+
+    useEffect(() =>{
+        async function loadStudents()
+        {
+            const data = await getStudents();
+            console.log(data);
+        }
+        loadStudents();
+    }, []);
+
+
 
     return(
         <>

@@ -9,17 +9,20 @@ function StudentForm({ addStudent, editingStudent })
         department:"",
         semester:"",
     })
-    //  iss code ko ztoorat k wqt chalana
+    //  iss code ko zroorat k wqt chalana
     
     useEffect(() =>{
-        console.log("editing student changed");
+        if(editingStudent){
+            setFormData(editingStudent);
+        }
     }, [editingStudent])
         // destructring
-    const {name, value} = event.target;
-
+    
 
     function handleChange(event)
     {
+        const {name, value} = event.target;
+
         // console.log(event.target.value);
         setFormData({
             name: "",
