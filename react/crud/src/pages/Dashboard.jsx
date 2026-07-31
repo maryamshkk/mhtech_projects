@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import StudentForm from "../components/StudentForm";
 import StudentCard from "../components/StudentCard";
 import {getStudents} from "../services/studentService";
@@ -28,7 +28,7 @@ function Dashboard()
         const newStudent = await addStudentAPI(student);
         setStudents([
             ...students,
-            student
+            newStudent
         ]);
     }
 
@@ -37,8 +37,8 @@ function Dashboard()
     // ab form fill kerne k loiye batane hoga form ko k student ka data rha hai 
     // uss k liye alg state bne gi 
     
-    const [ editingStudent, setEditingStudent] = useState([null]);
-    function editStudent()
+    const [ editingStudent, setEditingStudent] = useState(null);
+    function editStudent(student)
     {
         console.log(student);
         setEditingStudent(student);
