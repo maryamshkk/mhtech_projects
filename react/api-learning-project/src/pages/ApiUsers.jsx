@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import UserCard from "../components/UserCard";
 import UserForm from "../components/UserForm";
+import { addStudent as addStudentAPI } from "../services/userService";
+
 
 function ApiUsers()
 {
@@ -45,13 +47,28 @@ function ApiUsers()
         return <h1>{error}</h1>;
     
         }
+
+        async function handleAddUser(student){
+            // console.log(student);
+            const newUser = await addStudentAPI(student);
+
+            setUsers((prevUsers)=>[
+                ...prevUsers,
+                newUser
+            ]);
+        }
+
+
+
     return(
         <>
             <h1>
                 API Learning
             </h1>
             <br></br>
-                <UserForm />
+                <UserForm 
+                addStudent={handleAddUser}
+                />
             {
                 users.map((user)=>{
                     return(

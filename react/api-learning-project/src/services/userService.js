@@ -7,7 +7,7 @@ export async function getStudent()
     return data;
 }
 
-export async function addStudent()
+export async function addStudent(student)
 {
     const response = await fetch(API_URL, {
         method: "POST",

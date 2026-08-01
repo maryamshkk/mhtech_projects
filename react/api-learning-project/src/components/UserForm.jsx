@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function UserForm()
+function UserForm({addStudent})
 {
     const [formData, setFormData] = useState({
 
@@ -20,13 +20,14 @@ function UserForm()
     });
 
 
-
 }
     function handleSubmit(e){
 
         e.preventDefault();
 
-        console.log(formData);
+        // console.log(formData);
+        addStudent(formData);
+        
 
 }
 
