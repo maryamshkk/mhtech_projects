@@ -21,3 +21,26 @@ export async function addStudent(student)
     const data = await response.json()
     return data;
 }
+
+export async function updateStudent(id, student)
+{
+    const response = await fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers:{
+            "Content-Type" :"application/json"
+        },
+        body: JSON.stringify(student)
+    })
+
+    const data = await response.json();
+    return data;
+}
+
+export async function deleteStudent(id)
+{
+    const response = await fetch(`${API_URL}/${id}`,{
+        method: "DELETE"
+    });
+
+    return response;
+}

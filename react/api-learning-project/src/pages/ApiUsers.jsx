@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import UserCard from "../components/UserCard";
 import UserForm from "../components/UserForm";
 import { addStudent as addStudentAPI } from "../services/userService";
+import { updateStudent } from "../services/userService";
+import { deleteStudent } from "../services/userService";
 
 
 function ApiUsers()
@@ -9,6 +11,8 @@ function ApiUsers()
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [editingUser, setEditingUser] = useState(null)
+
 
     useEffect(()=>{
         // console.log("Compound Mounted");
@@ -58,6 +62,31 @@ function ApiUsers()
             ]);
         }
 
+        async function handleUpdateUser(id, student){
+            const updatedUser = await updateStudent(id, student);
+
+            setUsers((prevUsers)=>
+                prevUsers.map((user)=>{
+                    return user.id===id 
+                    ?
+                    updatedUser 
+                    :
+                    user
+                })
+            
+        );
+
+        setEditingUser(null);
+    }
+
+    async function handleDeleteUser(id){
+            await deleteStudent(id);
+
+            setUsers((prevUsers)=>prevUsers.filter(
+                    (user)=>user.id!==id
+                )
+            )
+    }
 
 
     return(
@@ -68,6 +97,9 @@ function ApiUsers()
             <br></br>
                 <UserForm 
                 addStudent={handleAddUser}
+                updateStudent = {handleUpdateUser}
+                editingUser = {editingUser}
+
                 />
             {
                 users.map((user)=>{
@@ -75,7 +107,8 @@ function ApiUsers()
                     <UserCard 
                     key={user.id}
                     user={user}
-                    
+                    onEdit = {setEditingUser}
+                    onDelete={handleDeleteUser}
                     />
                     )
                 })
@@ -88,6 +121,7 @@ function ApiUsers()
         </>
     )
 }
+
 
 
 export default ApiUsers;

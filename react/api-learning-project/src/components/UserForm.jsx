@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function UserForm({addStudent})
+function UserForm({addStudent, updateStudent, editingUser})
 {
     const [formData, setFormData] = useState({
 
@@ -9,6 +9,17 @@ function UserForm({addStudent})
     email: ""
 
 });
+
+    useEffect(() => {
+        if (editingUser) {
+            setFormData({
+                name: editingUser.name,
+                email: editingUser.email
+            });
+        }
+    }, [editingUser]);
+
+
     function handleChange(e){
 
     setFormData({
@@ -21,13 +32,26 @@ function UserForm({addStudent})
 
 
 }
+
     function handleSubmit(e){
 
         e.preventDefault();
 
         // console.log(formData);
-        addStudent(formData);
-        
+        if(editingUser){
+            updateStudent(
+                editingUser.id,
+                formData
+            );
+        }
+        else{
+            addStudent(formData);
+        }
+
+        setFormData({
+        name: "",
+        email: ""
+    });
 
 }
 
