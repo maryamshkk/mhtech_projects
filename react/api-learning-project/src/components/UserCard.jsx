@@ -13,7 +13,10 @@ function UserCard({user, onEdit, onDelete})
                     Edit User
             </button>
 
-            <button onClick={() => onDelete(user.id)}>
+            <button onClick={() => {
+                console.log(user);
+                console.log(user.id)
+                onDelete(user.id)}}>
                 Delete User
             </button>
         </div>
