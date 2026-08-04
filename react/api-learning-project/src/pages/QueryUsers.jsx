@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import UserCard from "../components/UserCard";
-import { getStudent, addStudent } from "../services/userService";
+import { getStudent, addStudent, deleteStudent } from "../services/userService";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import UserFormmQuery from "../components/UserFormmQuery";
 import { updateStudent } from "../services/userService";
@@ -42,6 +42,15 @@ function QueryUsers(){
             })
         }
     })
+
+    const deleteUserMutation = useMutation({
+        mutationFn: deleteStudent,
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["users"]
+            })
+        }
+    })
     
 
 
@@ -71,8 +80,9 @@ function QueryUsers(){
                     <UserCard 
                         key={user.id}
                         user={user}
-                        onEdit={setEditingUser}
-                        // onDelete={}
+                        onEdit={setEditingUser}           
+                        ondelete={deleteUserMutation.mutate}
+                        
                     />
             ))
             }
