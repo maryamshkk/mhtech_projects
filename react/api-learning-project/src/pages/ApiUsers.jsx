@@ -11,94 +11,79 @@ import { useMutation } from "@tanstack/react-query";
 
 function ApiUsers()
 {
-    // const [users, setUsers] = useState([]);
-    // const [loading, setLoading] = useState(true);
-    // const [error, setError] = useState("");
-    // const [editingUser, setEditingUser] = useState(null)
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+    const [editingUser, setEditingUser] = useState(null)
 
 
-//     useEffect(()=>{
-//         // console.log("Compound Mounted");
+    useEffect(()=>{
+        // console.log("Compound Mounted");
 
-//         async function fetchUsers() {
+        async function fetchUsers() {
 
-//         try {
+        try {
 
-//             const response = await fetch(
-//                 "https://jsonplaceholder.typicode.com/users"
-//             );
+            const response = await fetch(
+                "https://jsonplaceholder.typicode.com/users"
+            );
 
-//             const data = await response.json();
+            const data = await response.json();
 
-//             setUsers(data);
+            setUsers(data);
 
-//         }
-//         catch (error) {
+        }
+        catch (error) {
 
-//             setError("Failed to load users.");
+            setError("Failed to load users.");
 
-//         }
+        }
 
-//         setLoading(false);
+        setLoading(false);
 
-//     }
-//     fetchUsers();
+    }
+    fetchUsers();
     
-// }, [])
+}, [])
 
 
-        // async function handleAddUser(student){
-        //     // console.log(student);
-        //     const newUser = await addStudentAPI(student);
+        async function handleAddUser(student){
+            // console.log(student);
+            const newUser = await addStudentAPI(student);
 
-        //     setUsers((prevUsers)=>[
-        //         ...prevUsers,
-        //         newUser
-        //     ]);
-        // }
+            setUsers((prevUsers)=>[
+                ...prevUsers,
+                newUser
+            ]);
+        }
 
-    //     async function handleUpdateUser(id, student){
-    //         const updatedUser = await updateStudent(id, student);
+        async function handleUpdateUser(id, student){
+            const updatedUser = await updateStudent(id, student);
 
-    //         setUsers((prevUsers)=>
-    //             prevUsers.map((user)=>{
-    //                 return user.id===id 
-    //                 ?
-    //                 updatedUser 
-    //                 :
-    //                 user
-    //             })
+            setUsers((prevUsers)=>
+                prevUsers.map((user)=>{
+                    return user.id===id 
+                    ?
+                    updatedUser 
+                    :
+                    user
+                })
             
-    //     );
+        );
 
-    //     setEditingUser(null);
-    // }
+        setEditingUser(null);
+    }
 
-    // async function handleDeleteUser(id){
-    //         await deleteStudent(id);
+    async function handleDeleteUser(id){
+            await deleteStudent(id);
 
-    //         setUsers((prevUsers)=>prevUsers.filter(
-    //                 (user)=>user.id!==id
-    //             )
-    //         )
-    // }
+            setUsers((prevUsers)=>prevUsers.filter(
+                    (user)=>user.id!==id
+                )
+            )
+    }
 
-    // Using tanstack query
-
-        const {
-        data,
-        isLoading,
-        error
-    } = useQuery({
-        queryKey :["users"],
-        queryFn : getStudent
-    });
-
-    const users = data || []; 
-    const mutation = useMutation({
-        mutationFn: addStudentAPI
-    })
-
+    
 
         if (isloading) {
 
@@ -129,8 +114,8 @@ function ApiUsers()
                     <UserCard 
                     key={user.id}
                     user={user}
-                    // onEdit = {setEditingUser}
-                    // onDelete={handleDeleteUser}
+                    onEdit = {setEditingUser}
+                    onDelete={handleDeleteUser}
                     />
                     )
                 })
