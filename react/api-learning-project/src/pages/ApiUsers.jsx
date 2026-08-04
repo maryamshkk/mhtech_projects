@@ -6,6 +6,8 @@ import { addStudent as addStudentAPI } from "../services/userService";
 import { updateStudent } from "../services/userService";
 import { deleteStudent } from "../services/userService";
 import { useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+
 
 function ApiUsers()
 {
@@ -44,37 +46,16 @@ function ApiUsers()
     
 // }, [])
 
-    const {
-        data,
-        isLoading,
-        error
-    } = useQuery({
-        queryKey :["users"],
-        queryFn : getStudent
-    });
 
-    const users = data || []; 
+        // async function handleAddUser(student){
+        //     // console.log(student);
+        //     const newUser = await addStudentAPI(student);
 
-
-        if (isloading) {
-
-        return <h1>Loading...</h1>;
-        }
-        if (error) {
-
-        return <h1>{error}</h1>;
-    
-        }
-
-        async function handleAddUser(student){
-            // console.log(student);
-            const newUser = await addStudentAPI(student);
-
-            setUsers((prevUsers)=>[
-                ...prevUsers,
-                newUser
-            ]);
-        }
+        //     setUsers((prevUsers)=>[
+        //         ...prevUsers,
+        //         newUser
+        //     ]);
+        // }
 
     //     async function handleUpdateUser(id, student){
     //         const updatedUser = await updateStudent(id, student);
@@ -102,6 +83,33 @@ function ApiUsers()
     //         )
     // }
 
+    // Using tanstack query
+
+        const {
+        data,
+        isLoading,
+        error
+    } = useQuery({
+        queryKey :["users"],
+        queryFn : getStudent
+    });
+
+    const users = data || []; 
+    const mutation = useMutation({
+        mutationFn: addStudentAPI
+    })
+
+
+        if (isloading) {
+
+        return <h1>Loading...</h1>;
+        }
+        if (error) {
+
+        return <h1>{error}</h1>;
+    
+        }
+
 
     return(
         <>
@@ -121,8 +129,8 @@ function ApiUsers()
                     <UserCard 
                     key={user.id}
                     user={user}
-                    onEdit = {setEditingUser}
-                    onDelete={handleDeleteUser}
+                    // onEdit = {setEditingUser}
+                    // onDelete={handleDeleteUser}
                     />
                     )
                 })
@@ -131,7 +139,11 @@ function ApiUsers()
             }
             <br></br>
 
-
+            <button onClick={() =>{
+                mutate(formData)
+            }}>
+            Add User
+            </button>
         </>
     )
 }
