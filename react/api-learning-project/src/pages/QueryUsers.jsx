@@ -1,9 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import UserCard from "../components/UserCard";
-import { getStudent } from "../services/userService";
-
-
+import { getStudent, addStudent } from "../services/userService";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import UserFormmQuery from "../components/UserFormmQuery";
+import { updateStudent } from "../services/userService";
+import { useState, useEffect } from "react";
+ 
 function QueryUsers(){
+    const [editingUser, setEditingUser] = useState(null);
+    const queryClient = useQueryClient();
 
     const {
         data,
@@ -14,8 +19,32 @@ function QueryUsers(){
         queryFn:getStudent
     })
 
+       
+    const addUserMutation = useMutation({
+        mutationFn: addStudent,
 
+        onSuccess: (data) =>{
+            console.log(data);
+
+            queryClient.invalidateQueries({
+                queryKey:["users"],
+            });
+        }
+    });
+
+    const updateUserMutation = useMutation({
+        mutationFn:({id, student}) =>
+            updateStudent(id, student),
+        onSuccess: (data) => {
+            console.log(data)
+            queryClient.invalidateQueries({
+                queryKey: ["users"]
+            })
+        }
+    })
     
+
+
     if(isLoading){
         return <h1>Loading...</h1>;
     }
@@ -25,18 +54,29 @@ function QueryUsers(){
 
         const users = data || [];
 
+    
     return(
         <>
         <div>
             Tanstack Query Users
+            
+            <UserFormmQuery 
+            addUser={addUserMutation.mutate}
+            updateUser={updateUserMutation.mutate}
+            editingUser={editingUser}
+            />
+
             { 
                 users.map((user)=>(
                     <UserCard 
                         key={user.id}
                         user={user}
+                        onEdit={setEditingUser}
+                        // onDelete={}
                     />
             ))
             }
+
         </div>
         </>
     )

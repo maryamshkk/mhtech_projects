@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function UserForm({addStudent, updateStudent, editingUser, addUser})
+function UserFormmQuery({addUser, editingUser, updateUser})
 {
     const [formData, setFormData] = useState({
 
@@ -9,15 +9,21 @@ function UserForm({addStudent, updateStudent, editingUser, addUser})
     email: ""
 
 });
-
     useEffect(() => {
-        if (editingUser) {
-            setFormData({
-                name: editingUser.name,
-                email: editingUser.email
-            });
-        }
-    }, [editingUser]);
+
+    if(editingUser){
+
+        setFormData({
+
+            name: editingUser.name,
+
+            email: editingUser.email
+
+        });
+
+    }
+
+}, [editingUser]);
 
 
     function handleChange(e){
@@ -37,16 +43,28 @@ function UserForm({addStudent, updateStudent, editingUser, addUser})
 
         e.preventDefault();
 
-        addStudent(formData);
 
+        if(editingUser){
+            updateUser({
+                id:editingUser.id,
+                student : formData
+        });
+        }
+        else{
+            addUser(formData);
+        }
 
+        setFormData({
+        name: "",
+        email: ""
+    });
 }
 
     return(
         <div>
             <form onSubmit={handleSubmit}>
             
-            <h2>Add new User</h2>
+            <h2>Add User</h2>
             
             <input type="text"
                 name = "name"
@@ -63,9 +81,9 @@ function UserForm({addStudent, updateStudent, editingUser, addUser})
             />
             <br></br>
 
-            <button>Add New User</button>
+            <button>Add User</button>
             </form>
         </div>
     )
 }
-export default UserForm;
+export default UserFormmQuery;
