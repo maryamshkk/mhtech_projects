@@ -1,18 +1,19 @@
 # Employee Management System (Laravel CRUD)
 
-A simple Laravel CRUD application for managing employee records.
+A Laravel CRUD application for managing employee records with complete Create, Read, Update, and Delete functionality.
 
-## 🚀 Features Implemented
+## 🚀 Features
 
-* Employee CRUD setup
-* Employee Model
-* Employee Migration
-* Employee Controller
-* Routing
-* Employee Creation Form
-* Employee Listing
+* Complete Employee CRUD Operations
+* Employee Registration
+* View All Employees
+* View Individual Employee Details
+* Update Employee Information
+* Delete Employee Records
 * Form Validation
 * Mass Assignment using `$fillable`
+* Clean MVC Architecture
+* Blade Template Views
 
 ## 🗂️ Employee Attributes
 
@@ -44,22 +45,29 @@ resources/
 └── views/
     └── Employee/
         ├── index.blade.php
-        └── create.blade.php
+        ├── create.blade.php
+        ├── edit.blade.php
+        └── show.blade.php
 
 routes/
 └── web.php
 ```
 
-## ✅ Current Progress
+## ✅ Implemented Functionality
 
-* Database migration created
-* Employee model configured
-* `$fillable` implemented
-* CRUD routes created
-* `index()`, `create()`, and `store()` methods implemented
-* Create employee form completed
-* Employee listing page completed
-* Server-side validation implemented
+* Employee migration
+* Employee model
+* `$fillable` configuration
+* CRUD routes
+* Resource controller
+* Create employee
+* Display all employees
+* View single employee
+* Edit employee
+* Update employee
+* Delete employee
+* Request validation
+* Redirects with responses
 
 ## 🛠️ Tech Stack
 
@@ -68,11 +76,3 @@ routes/
 * Blade
 * MySQL
 * HTML
-
-## 📌 Next Steps
-
-* Show Employee
-* Edit Employee
-* Update Employee
-* Delete Employee
-* Improve UI with Bootstrap or Tailwind CSS
