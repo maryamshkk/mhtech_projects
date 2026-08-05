@@ -29,11 +29,11 @@ export async function updateUser(id, user)
         headers:{
             "Content-Type" :"application/json"
         },
-        body: JSON.stringify(student)
+        body: JSON.stringify(user)
     })
 
     const data = await response.json();
-    data;
+    return data;
 }
 
 export async function deleteStudent(id)

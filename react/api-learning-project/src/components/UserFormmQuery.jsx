@@ -21,7 +21,7 @@ function UserFormmQuery({addUser, editingUser, updateUser})
 
             email: editingUser.email,
 
-            password: editinguser.password
+            password: ""
 
         });
 
@@ -51,7 +51,7 @@ function UserFormmQuery({addUser, editingUser, updateUser})
         if(editingUser){
             updateUser({
                 id:editingUser.id,
-                student : formData
+                user : formData
         });
         }
         else{
@@ -93,7 +93,9 @@ function UserFormmQuery({addUser, editingUser, updateUser})
             />
             <br></br>
 
-            <button>Add User</button>
+            <button>
+                {editingUser ? "Update User" : "Add User"}
+            </button>
             </form>
         </div>
     )
