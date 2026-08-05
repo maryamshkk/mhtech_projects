@@ -1,16 +1,93 @@
-# React + Vite
+# React + TanStack Query Learning
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Project
 
-Currently, two official plugins are available:
+A React CRUD application connected with a Laravel REST API using TanStack Query.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✅ Topics Covered
 
-## React Compiler
+### React Fundamentals
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Controlled Components
+* Form State Management
+* Dynamic Input Handling
+* Form Submission (`preventDefault`)
+* Passing Functions as Props
+* Child → Parent Communication
+* Lifting State Up
+* Conditional Rendering
+* `useEffect` Hook
+* API Fetching using `fetch()`
 
-## Expanding the ESLint configuration
+### CRUD with React
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* Create User
+* Read Users
+* Update User
+* Delete User
+
+### Laravel REST API
+
+* GET `/api/users`
+* POST `/api/users`
+* PUT `/api/users/{id}`
+* DELETE `/api/users/{id}`
+
+### TanStack Query
+
+* Installation & Setup
+* `QueryClient`
+* `QueryClientProvider`
+* `useQuery`
+* Query Keys
+* Query Cache
+* `staleTime`
+* `gcTime`
+* `refetchOnWindowFocus`
+* `useMutation`
+* POST Mutation
+* PUT Mutation
+* DELETE Mutation
+* `invalidateQueries()`
+
+## 📂 Project Structure
+
+```text
+src/
+│
+├── components/
+│   ├── UserCard.jsx
+│   └── UserForm.jsx
+│
+├── pages/
+│   └── QueryUsers.jsx
+│
+├── services/
+│   └── userService.js
+│
+└── main.jsx
+```
+
+## 🔄 Current Flow
+
+```text
+User Action
+      ↓
+React Component
+      ↓
+TanStack Query
+      ↓
+userService.js
+      ↓
+Laravel API
+      ↓
+Database
+      ↓
+Updated Cache
+      ↓
+Automatic UI Update
+```
+
+## 🎯 Goal
+
+Build production-ready React applications using **TanStack Query** with a **Laravel REST API**, while understanding caching, mutations, and server-state management following professional development practices.

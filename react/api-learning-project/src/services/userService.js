@@ -36,7 +36,7 @@ export async function updateUser(id, user)
     return data;
 }
 
-export async function deleteStudent(id)
+export async function deleteUser(id)
 {
     const response = await fetch(`${API_URL}/${id}`,{
         method: "DELETE"

@@ -1,4 +1,4 @@
-function UserCard({user, onEdit, onDelete})
+function UserCard({user, onEdit, ondelete})
 {
     return(
         <>
@@ -16,7 +16,7 @@ function UserCard({user, onEdit, onDelete})
             <button onClick={() => {
                 console.log(user);
                 console.log(user.id);
-                onDelete(user.id)}}>
+                ondelete(user.id)}}>
                 Delete User
             </button>
         </div>

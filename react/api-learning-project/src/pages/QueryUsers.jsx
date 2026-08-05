@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import UserCard from "../components/UserCard";
-import { getUsers, addUser, updateUser, deleteStudent } from "../services/userService";
+import { getUsers, addUser, updateUser, deleteUser } from "../services/userService";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import UserFormmQuery from "../components/UserFormmQuery";
 import { useState, useEffect } from "react";
@@ -48,7 +48,7 @@ function QueryUsers(){
     })
 
     const deleteUserMutation = useMutation({
-        mutationFn: deleteStudent,
+        mutationFn: deleteUser,
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ["users"]
