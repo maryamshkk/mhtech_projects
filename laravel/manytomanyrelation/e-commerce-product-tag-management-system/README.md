@@ -1,121 +1,74 @@
-# 🛒 Product & Tag Management System
+# 📚 Library Management System (One-to-One Relationship)
 
-A Laravel-based application developed to learn and implement **CRUD operations** and **Many-to-Many Relationships** using the MVC architecture and Eloquent ORM.
-
----
-
-## 🚀 Tech Stack
-
-| Technology   | Usage                |
-| ------------ | -------------------- |
-| Laravel      | Backend Framework    |
-| PHP          | Server-side Language |
-| MySQL        | Database             |
-| Blade        | Templating Engine    |
-| Tailwind CSS | User Interface       |
-| Eloquent ORM | Database Operations  |
+A simple Laravel CRUD project demonstrating a **One-to-One Relationship** between **Category** and **Book** with a clean Tailwind CSS interface.
 
 ---
 
-## 📌 Completed Features
+## ✨ Features
 
-### ✅ Product Module
-
-* Complete Product CRUD
-* Create Product
-* View All Products
-* View Product Details
-* Edit Product
-* Delete Product
-* Form Validation
-* Route Model Binding
-* Flash Success Messages
+| Module | Status |
+|--------|:------:|
+| Category CRUD | ✅ |
+| Book CRUD | ✅ |
+| One-to-One Relationship | ✅ |
+| Form Validation | ✅ |
+| Database Migrations | ✅ |
+| Tailwind CSS UI | ✅ |
+| Dashboard | ✅ |
 
 ---
 
-### ✅ Database Design
+## 🛠️ Tech Stack
 
-| Table                     | Status       |
-| ------------------------- | ------------ |
-| Products                  | ✔️ Completed |
-| Tags                      | ✔️ Completed |
-| Product_Tag (Pivot Table) | ✔️ Completed |
-
-Implemented:
-
-* Foreign Key Constraints
-* Cascade Delete
-* Composite Primary Key
-* Many-to-Many Database Structure
+| Technology | Usage |
+|------------|-------|
+| Laravel 13 | Backend Framework |
+| PHP | Server-side Language |
+| MySQL | Database |
+| Blade | Templating Engine |
+| Tailwind CSS | UI Styling |
 
 ---
 
-### ✅ Eloquent Models
+## 📂 Project Structure
 
-| Model   | Relationship                    |
-| ------- | ------------------------------- |
-| Product | `belongsToMany(Tag::class)`     |
-| Tag     | `belongsToMany(Product::class)` |
+```
+Category
+├── Create
+├── Read
+├── Update
+└── Delete
 
-Also implemented:
-
-* Mass Assignment (`$fillable`)
-* Eloquent ORM
-
----
-
-### ✅ Routing
-
-* Manual CRUD Routes
-* Named Routes
-* RESTful Route Structure
+Book
+├── Create
+├── Read
+├── Update
+└── Delete
+```
 
 ---
 
-### ✅ Blade Views
+## 🔗 Relationship
 
-| View            | Status |
-| --------------- | ------ |
-| Product Listing | ✔️     |
-| Create Product  | ✔️     |
-| Edit Product    | ✔️     |
-| Product Details | ✔️     |
+```
+Category (1)
+     │
+     │ hasOne
+     ▼
+Book (1)
+```
 
----
-
-## 📚 Laravel Concepts Practiced
-
-* MVC Architecture
-* CRUD Operations
-* Routing
-* Controllers
-* Eloquent ORM
-* Blade Templates
-* Form Validation
-* Route Model Binding
-* Many-to-Many Relationships
-* Pivot Tables
-* Foreign Keys
-* Cascade Delete
-* Mass Assignment
+- A Category has **one** Book.
+- A Book belongs to **one** Category.
 
 ---
 
-## 🎯 Project Status
+## 🚀 Completed
 
-✅ Product CRUD completed
-
-✅ Database structure for Many-to-Many relationship completed
-
-✅ Eloquent relationships configured
-
----
-
-## 📷 Current Application
-
-* Professional Product Management Interface
-* Responsive Product Listing
-* Product Create Form
-* Product Edit Form
-* Product Details Page
-* Delete Confirmation
+- Category CRUD
+- Book CRUD
+- One-to-One Relationship
+- Dashboard
+- Responsive UI using Tailwind CSS
+- Form Validation
+- Database Migrations
