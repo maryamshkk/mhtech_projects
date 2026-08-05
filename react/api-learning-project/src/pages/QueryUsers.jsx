@@ -16,7 +16,8 @@ function QueryUsers(){
         error 
     } = useQuery({
         queryKey: ["users"],
-        queryFn:getStudent
+        queryFn:getStudent,
+        staleTime: 60000
     })
 
        
