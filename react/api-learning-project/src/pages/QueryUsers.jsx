@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import UserCard from "../components/UserCard";
-import { getStudent, addStudent, deleteStudent } from "../services/userService";
+import { getUsers, addUser, deleteStudent } from "../services/userService";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import UserFormmQuery from "../components/UserFormmQuery";
 import { updateStudent } from "../services/userService";
@@ -16,14 +16,15 @@ function QueryUsers(){
         error 
     } = useQuery({
         queryKey: ["users"],
-        queryFn:getStudent,
+        queryFn:getUsers,
         staleTime: 60000,
-        gcTime:300000
+        gcTime:300000, 
+        refetchOnWindowFocus:true,
     })
 
        
     const addUserMutation = useMutation({
-        mutationFn: addStudent,
+        mutationFn: addUser,
 
         onSuccess: (data) =>{
             console.log(data);
@@ -34,16 +35,16 @@ function QueryUsers(){
         }
     });
 
-    const updateUserMutation = useMutation({
-        mutationFn:({id, student}) =>
-            updateStudent(id, student),
-        onSuccess: (data) => {
-            console.log(data)
-            queryClient.invalidateQueries({
-                queryKey: ["users"]
-            })
-        }
-    })
+    // const updateUserMutation = useMutation({
+    //     mutationFn:({id, student}) =>
+    //         updateStudent(id, student),
+    //     onSuccess: (data) => {
+    //         console.log(data)
+    //         queryClient.invalidateQueries({
+    //             queryKey: ["users"]
+    //         })
+    //     }
+    // })
 
     const deleteUserMutation = useMutation({
         mutationFn: deleteStudent,
