@@ -35,16 +35,16 @@ function QueryUsers(){
         }
     });
 
-    // const updateUserMutation = useMutation({
-    //     mutationFn:({id, student}) =>
-    //         updateStudent(id, student),
-    //     onSuccess: (data) => {
-    //         console.log(data)
-    //         queryClient.invalidateQueries({
-    //             queryKey: ["users"]
-    //         })
-    //     }
-    // })
+    const updateUserMutation = useMutation({
+        mutationFn:({id, student}) =>
+            updateStudent(id, student),
+        onSuccess: (data) => {
+            console.log(data)
+            queryClient.invalidateQueries({
+                queryKey: ["users"]
+            })
+        }
+    })
 
     const deleteUserMutation = useMutation({
         mutationFn: deleteStudent,

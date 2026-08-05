@@ -8,7 +8,7 @@ function UserFormmQuery({addUser, editingUser, updateUser})
 
     email: "",
 
-    // password:""
+    password:""
 
 });
     useEffect(() => {
@@ -61,7 +61,7 @@ function UserFormmQuery({addUser, editingUser, updateUser})
         setFormData({
         name: "",
         email: "", 
-        // password: "",
+        password: "",
     });
 }
 
@@ -85,13 +85,13 @@ function UserFormmQuery({addUser, editingUser, updateUser})
                 onChange={handleChange}
             />
             <br></br>
-            {/* <input type="password" 
+            <input type="password" 
                 name="password"
                 placeholder="Enter Password"
                 value={formData.password}
                 onChange={handleChange}
             />
-            <br></br> */}
+            <br></br>
 
             <button>Add User</button>
             </form>
