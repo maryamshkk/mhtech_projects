@@ -5,13 +5,23 @@ const prisma = new PrismaClient();
 const main = async () => {
     // insert data 
     // create single user
-    const user = await prisma.user.create({
-        data:{
-            name: "maryam",
-            email: "maryamsheikh117@gmail.com"
-        },
-    });
-    console.log(user);
+    // const user = await prisma.user.create({
+    //     data:{
+    //         name: "maryam",
+    //         email: "maryamsheikh117@gmail.com"
+    //     },
+    // });
+    // console.log(user);
+
+    // multiple users
+    const newUsers = await prisma.user.createMany({
+        data:[
+        { email: "samreen12@gmail.com", name: "samreen"},
+        { email: "noreen12@gmail.com", name: "noreen"},
+        { email: "salman12@gmail.com", name: "salman"}
+    ]
+    })
+    console.log(newUsers)
 };
 
 main()
