@@ -24,13 +24,23 @@ const main = async () => {
     // console.log(newUsers)
 
     // read all data
-//     const showUsers = await prisma.user.findMany();
-//     console.log(showUsers);
-// };
-    const showUser = await prisma.user.findUnique({
-        where : {id:2}
+    //     const showUsers = await prisma.user.findMany();
+    //     console.log(showUsers);
+    // };
+
+    // finduser
+    //     const showUser = await prisma.user.findUnique({
+    //         where : {id:2}
+    //     });
+    //     console.log(showUser);
+    // };
+
+// updateuser
+    const updateUser = await prisma.user.update({
+        where : {id:2},
+        data: {name:"raheela"}
     });
-    console.log(showUser);
+    console.log(updateUser);
 };
 
 main()
