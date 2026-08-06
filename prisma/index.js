@@ -36,11 +36,18 @@ const main = async () => {
     // };
 
 // updateuser
-    const updateUser = await prisma.user.update({
+//     const updateUser = await prisma.user.update({
+//         where : {id:2},
+//         data: {name:"raheela"}
+//     });
+//     console.log(updateUser);
+// };
+
+// delete user
+    const deleteUser = await prisma.user.delete({
         where : {id:2},
-        data: {name:"raheela"}
     });
-    console.log(updateUser);
+    console.log(deleteUser);
 };
 
 main()
