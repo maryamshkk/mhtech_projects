@@ -14,14 +14,18 @@ const main = async () => {
     // console.log(user);
 
     // multiple users
-    const newUsers = await prisma.user.createMany({
-        data:[
-        { email: "samreen12@gmail.com", name: "samreen"},
-        { email: "noreen12@gmail.com", name: "noreen"},
-        { email: "salman12@gmail.com", name: "salman"}
-    ]
-    })
-    console.log(newUsers)
+    // const newUsers = await prisma.user.createMany({
+    //     data:[
+    //     { email: "samreen12@gmail.com", name: "samreen"},
+    //     { email: "noreen12@gmail.com", name: "noreen"},
+    //     { email: "salman12@gmail.com", name: "salman"}
+    // ]
+    // })
+    // console.log(newUsers)
+
+    // read all data
+    const showUsers = await prisma.user.findMany();
+    console.log(showUsers);
 };
 
 main()
