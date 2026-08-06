@@ -54,10 +54,9 @@ const main = async () => {
     const deleteUser = await prisma.user.deleteMany({
         where : {
             id:{
-                in:[1, 4]
-            },
-    },
-});
+                in:[2, 4]}
+            }
+    });
     console.log(deleteUser);
 };
 
