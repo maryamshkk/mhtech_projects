@@ -17,5 +17,5 @@ const main = async () => {
 main()
     .catch((e)=> console.error(e))
     .finally(async () =>{
-        await prisma.$disonnect();
+        await prisma.$disconnect();
     })
