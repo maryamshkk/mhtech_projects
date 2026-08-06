@@ -24,8 +24,13 @@ const main = async () => {
     // console.log(newUsers)
 
     // read all data
-    const showUsers = await prisma.user.findMany();
-    console.log(showUsers);
+//     const showUsers = await prisma.user.findMany();
+//     console.log(showUsers);
+// };
+    const showUser = await prisma.user.findUnique({
+        where : {id:2}
+    });
+    console.log(showUser);
 };
 
 main()
