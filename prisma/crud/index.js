@@ -1,12 +1,29 @@
-const req = require("express/lib/request");
-const prisma = require("./prisma");
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
-await prisma.student.createMany({
-    data:[
-        { name: "a", email: "a@gmail.com", age: 22, cgpa: 3.4},
-        { name: "b", email: "b@gmail.com", age: 23, cgpa: 3.3},
-        { name: "c", email: "c@gmail.com", age: 24, cgpa: 3.2},
-        { name: "d", email: "d@gmail.com", age: 25, cgpa: 3.1},
-        { name: "e", email: "e@gmail.com", age: 26, cgpa: 3.0}, 
-]
-})
+const main = async () => {
+
+// const newStudents = await prisma.student.createMany({
+//     data:[
+//         { name: "a", email: "a12@gmail.com", age: 22},
+//         { name: "b", email: "b23@gmail.com", age: 23},
+//         { name: "c", email: "c34@gmail.com", age: 24},
+//         { name: "d", email: "d45@gmail.com", age: 25},
+//         { name: "e", email: "e56@gmail.com", age: 26}, 
+// ]
+// // })
+//     console.log(newStudents);
+// find many students
+// const findStudents = await prisma.student.findMany();
+// console.log(findStudents)
+const specificStudents = await prisma.student.findUnique({
+    where: {id:1}
+});
+console.log(specificStudents)
+}
+
+main()
+    .catch(console.error)
+    .finally(async () =>{
+        await prisma.$disconnect();
+    })
