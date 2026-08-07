@@ -12,6 +12,7 @@
     "prisma": "^6.19.3"
   },
   "dependencies": {
-    "@prisma/client": "^6.19.3"
+    "@prisma/client": "^6.19.3",
+    "express": "^5.2.1"
   }
 }
