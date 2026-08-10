@@ -15,24 +15,24 @@ export const getStudents = async (req, res) => {
 };
 
 // post student controller
-// export const createStudent = async (req, res) =>{
-//     try{
-//         const {name, email, age } = req.body;
+export const createStudent = async (req, res) =>{
+    try{
+        const {name, email, age } = req.body;
 
-//         const student = await prisma.student.create({
-//             data : {
-//                 name,
-//                 email,
-//                 age
-//             }
-//         });
+        const student = await prisma.student.create({
+            data : {
+                name,
+                email,
+                age
+            }
+        });
 
-//         res.status(201).json(student);
-//     }
+        res.status(201).json(student);
+    }
 
-//     catch (error) {
-//         res.status(500).json({
-//             message: error.message
-//         });
-//     }
-// }
+    catch (error) {
+        res.status(500).json({
+            message: error.message
+        });
+    }
+}
