@@ -59,3 +59,40 @@ export const getStudent = async (req,res) => {
         });
     }
 } 
+
+// update student by id 
+
+export const updateStudent = async (req, res)=>{
+    try{
+        const id = Number(req.params.id);
+
+        const {name, email, age} =  req.body;
+
+        const existingStudent = await prisma.student.findUnique({
+            where: {id:id}
+        })
+
+        if (!existingStudent){
+            return res.status(400).json({
+                message: "Student not found"
+            })
+        }
+        const student = await prisma.student.update({
+            where :{
+                id
+            },
+            data : {
+                name, 
+                email,
+                age
+            }
+        })
+        res.status(200).json(student);
+    }
+    catch(error){
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
