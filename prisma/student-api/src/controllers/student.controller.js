@@ -78,7 +78,7 @@ export const updateStudent = async (req, res)=>{
             })
         }
         const student = await prisma.student.update({
-            where :{
+            where : {
                 id
             },
             data : {
